@@ -30,7 +30,6 @@ export default function Sidebar({ currentTab, setTab, user, onLogout, onOpenLogi
     { id: 'compare' as TabType, label: 'Compare Colleges', icon: Shuffle },
     { id: 'advisor' as TabType, label: 'AI Coach (Adviser)', icon: MessageSquareCode, badge: 'AI' },
     { id: 'dashboard' as TabType, label: 'User Dashboard', icon: User },
-    { id: 'architecture' as TabType, label: 'System Blueprint', icon: FolderGit2, badge: 'Docs' },
   ];
 
   return (
