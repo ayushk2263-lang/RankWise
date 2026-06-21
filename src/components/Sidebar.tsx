@@ -33,7 +33,7 @@ export default function Sidebar({ currentTab, setTab, user, onLogout, onOpenLogi
   ];
 
   return (
-    <aside className="w-64 backdrop-blur-xl bg-white/5 border-r border-white/10 flex flex-col h-screen fixed top-0 left-0 z-20">
+    <aside className="hidden md:flex w-64 backdrop-blur-xl bg-white/5 border-r border-white/10 flex-col h-screen fixed top-0 left-0 z-20">
       {/* App Brand Header */}
       <div className="p-6 border-b border-white/10 flex items-center gap-3">
         <div className="w-9 h-9 bg-indigo-500 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/25">

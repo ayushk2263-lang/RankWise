@@ -163,8 +163,7 @@ export default function App() {
       />
 
       {/* Primary content Workspace details */}
-      <main className="flex-1 md:ml-64 min-h-screen p-8 lg:p-12 pb-20 relative z-10 overflow-x-hidden">
-        {/* App Shell top bar */}
+      <main className="flex-1 md:ml-64 min-h-screen p-4 sm:p-6 lg:p-12 pb-20 relative z-10 overflow-x-hidden">        {/* App Shell top bar */}
         <header className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/10">
           <div>
             <h1 className="text-xl font-extrabold text-white tracking-tight flex items-center gap-2 font-sans uppercase">
