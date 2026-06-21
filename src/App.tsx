@@ -10,7 +10,7 @@ import DashboardTab from './components/DashboardTab';
 import ArchitectureTab from './components/ArchitectureTab';
 import ErrorBoundary from './components/ErrorBoundary';
 import { TabType, UserSession } from './types';
-import { Sparkles, Trophy, Landmark, GraduationCap } from 'lucide-react';
+import { Sparkles, Trophy, Landmark, GraduationCap, Menu } from 'lucide-react';
 import { collegesData } from './data/collegeData';
 import { initDb, cacheCollegeCatalog, saveOfflineShortlist, getOfflineShortlist } from './lib/offlineDb';
 
@@ -36,6 +36,7 @@ export default function App() {
   
   // Preset state for comparisons
   const [comparePreset, setComparePreset] = useState<{ collegeId: string; branchCode: string } | null>(null);
+const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Load saved credentials from localStorage if present & seed offline database
   useEffect(() => {
@@ -154,17 +155,45 @@ export default function App() {
       </div>
 
       {/* Structural Sidebar Panel */}
-      <Sidebar 
-        currentTab={currentTab} 
-        setTab={setTab} 
-        user={user}
-        onLogout={handleLogout}
-        onOpenLogin={() => setTab('dashboard')}
-      />
+      {/* Desktop Sidebar */}
+<div className="hidden md:block">
+  <Sidebar
+    currentTab={currentTab}
+    setTab={setTab}
+    user={user}
+    onLogout={handleLogout}
+    onOpenLogin={() => setTab('dashboard')}
+  />
+</div>
 
-      {/* Primary content Workspace details */}
+{/* Mobile Navigation */}
+{mobileMenuOpen && (
+  <div className="md:hidden fixed inset-0 z-50 bg-black/80 overflow-y-auto">
+    <Sidebar
+      currentTab={currentTab}
+      setTab={(tab) => {
+        setTab(tab);
+        setMobileMenuOpen(false);
+      }}
+      user={user}
+      onLogout={handleLogout}
+      onOpenLogin={() => {
+        setTab('dashboard');
+        setMobileMenuOpen(false);
+      }}
+    />
+  </div>
+)}      {/* Primary content Workspace details */}
       <main className="flex-1 md:ml-64 min-h-screen p-4 sm:p-6 lg:p-12 pb-20 relative z-10 overflow-x-hidden">        {/* App Shell top bar */}
         <header className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-8 mb-8 border-b border-white/10">
+<div className="md:hidden mb-4">
+  <button
+    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+    className="p-2 rounded-lg bg-white/10 border border-white/20"
+  >
+    <Menu className="w-6 h-6 text-white" />
+  </button>
+</div>
           <div>
             <h1 className="text-xl font-extrabold text-white tracking-tight flex items-center gap-2 font-sans uppercase">
               <span>Predictive Command Portal</span>
