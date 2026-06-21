@@ -29,10 +29,9 @@ export default async function handler(req: any, res: any) {
   advice: response.text,
    });
   } catch (error: any) {
-    console.error(error);
+  console.error(error);
 
-    return res.status(500).json({
-      error: error.message || "Unknown error"
-    });
-  }
-}
+  return res.status(500).json({
+    error: JSON.stringify(error, null, 2)
+  });
+}}
