@@ -1,0 +1,6 @@
+{
+  "name": "RankWise",
+  "description": "An AI-powered JEE College Predictor and cutoff analysis portal with 5-year JoSAA statistics, placement analytics, and personalized AI admissions coaching.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
