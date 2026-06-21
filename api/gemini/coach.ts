@@ -25,9 +25,10 @@ export default async function handler(req: any, res: any) {
       contents: userQuery,
     });
 
-    return res.status(200).json({
+   return res.status(200).json({
+  success: true,
   advice: response.text,
-   });
+});
   } catch (error: any) {
   console.error(error);
 
