@@ -2966,23 +2966,24 @@ export function predictColleges(input: PredictionInput): PredictedBranch[] {
         
         if (!trend || trend.availableYearsCount === 0) continue;
         
-        const wAvg = trend.weightedRecentAverage;
-        const newestRec = trend.actualRecords[trend.actualRecords.length - 1];
-        const closing = newestRec ? newestRec.closingRank : 0;
-        const opening = newestRec ? newestRec.openingRank : 0;
-        
-        let recType: 'Dream' | 'Target' | 'Safe' | null = null;
+       const wAvg = trend.weightedRecentAverage;
+const newestRec = trend.actualRecords[trend.actualRecords.length - 1];
+
+const latestCutoff = newestRec ? newestRec.closingRank : wAvg;
+
+const closing = newestRec ? newestRec.closingRank : 0;
+const opening = newestRec ? newestRec.openingRank : 0;        let recType: 'Dream' | 'Target' | 'Safe' | null = null;
         
         // Rules based on Rank Ranges to reduce false positives in Elite and High Ranks
-        if (rank < 5000) {
-          if (rank <= wAvg * 0.95) {
-            recType = 'Safe';
-          } else if (rank <= wAvg * 1.08) {
-            recType = 'Target';
-          } else if (rank <= wAvg * 1.20) {
-            recType = 'Dream';
-          }
-        } else if (rank <= 20000) {
+       if (rank < 5000) {
+  if (rank <= latestCutoff * 0.90) {
+    recType = 'Safe';
+  } else if (rank <= latestCutoff) {
+    recType = 'Target';
+  } else if (rank <= latestCutoff * 1.10) {
+    recType = 'Dream';
+  }
+}else if (rank <= 20000) {
           if (rank <= wAvg * 0.90) {
             recType = 'Safe';
           } else if (rank <= wAvg * 1.15) {
